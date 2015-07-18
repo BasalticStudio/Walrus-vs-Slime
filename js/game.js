@@ -9,9 +9,11 @@
         // Initializer
         Game.state.add('Boot', States.Boot)
         Game.state.add('Preloader', States.Preloader)
+        Game.state.add('Loading', States.Loading)
 
         // Game Scene
         Game.state.add('MainMenu', States.MainMenu)
+        Game.state.add('BattleField', States.BattleField)
 
 
         // Start Game

@@ -17,7 +17,6 @@ States.Preloader = {
 
     update: function() {
         if(this.load.hasLoaded) {
-            console.log("Loaded")
             this.state.start('MainMenu')
         }
     }

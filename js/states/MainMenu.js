@@ -26,5 +26,6 @@ States.MainMenu.prototype = {
     },
 
     startGame: function() {
+        this.state.start('Loading', true, false, 'BattleField', Assets.BattleField)
     }
 }
