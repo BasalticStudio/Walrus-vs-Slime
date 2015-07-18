@@ -1,0 +1,18 @@
+{
+  "name": "walrus_vs_slime",
+  "version": "0.0.1",
+  "description": "A demo game for 2015 game on weekend",
+  "main": "coffee/game.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "蒼時弦也 <elct9620@frost.tw> (http://frost.tw)",
+  "license": "Apache",
+  "dependencies": {
+    "gulp": "^3.9.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.7.13",
+    "gulp-babel": "^5.1.0"
+  }
+}
