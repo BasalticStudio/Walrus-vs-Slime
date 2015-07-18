@@ -2,7 +2,7 @@
 
     window.onload = function() {
         // Initialize Game
-        var Game = new Phaser.Game(1024, 768, Phaser.AUTO, 'game')
+        var Game = new Phaser.Game(1024, 768, Phaser.AUTO, '')
 
         /* Add Game states */
 

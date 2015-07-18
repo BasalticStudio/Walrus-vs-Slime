@@ -15,9 +15,13 @@ States.Boot = {
         this.scale.pageAlignHorizontally = true
         this.scale.pageAlignVertically = true
 
+
         if(!this.game.device.desktop) {
             // TODO: Handle Mobile use correctly orientation
+            this.stage.scaleMode = Phaser.ScaleManager.EXACT_FIT
         }
+
+        this.scale.refresh()
     },
 
     preload: function() {
