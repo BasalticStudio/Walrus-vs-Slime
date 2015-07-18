@@ -22,6 +22,8 @@ gulp.task('js', function() {
         .on('error', handleError)
         .pipe(order([
             'js/Core.js',
+            'js/Assets.js',
+            'js/Helper.js',
             'js/**/*.js',
             'js/game.js'
         ]))
