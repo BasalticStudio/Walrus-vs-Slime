@@ -2,7 +2,7 @@
   "name": "walrus_vs_slime",
   "version": "0.0.1",
   "description": "A demo game for 2015 game on weekend",
-  "main": "coffee/game.coffee",
+  "main": "js/game.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
