@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.7.13",
-    "gulp-babel": "^5.1.0"
+    "gulp-babel": "^5.1.0",
+    "gulp-order": "^1.1.1"
   }
 }
