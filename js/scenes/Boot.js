@@ -36,6 +36,8 @@ Scenes.Boot = {
         this.input.touch.touchStartCallback = inputHandler.OnTouchStart()
         this.input.touch.touchMoveCallback = inputHandler.OnTouchMove()
         this.input.touch.touchEndCallback = inputHandler.OnTouchEnd()
+        this.input.keyboard.onPressCallback = inputHandler.OnKeyPress()
+        this.input.keyboard.onUpCallback = inputHandler.OnKeyUp()
 
         // Enable FPS
         this.game.time.advancedTiming = true

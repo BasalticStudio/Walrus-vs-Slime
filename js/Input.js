@@ -4,11 +4,22 @@
  * Handle Game Inputs
  */
 
-
 Input = class {
     constructor() {
         this._pointerData = []
         this._cameraX = 0
+    }
+
+    static get SCROLL_SPEED() {
+        return 20
+    }
+
+    static get SCROLL_DIRECTION() {
+        return {
+            STOP: 0,
+            LEFT: 1,
+            RIGHT: 2
+        }
     }
 
     OnTouchStart() {
@@ -43,6 +54,35 @@ Input = class {
             })
 
             this.camera.x = self.horizontalDragStep()
+        }
+    }
+
+    OnKeyPress() {
+        // TODO: This code can imrpove more!!
+        return function(key, ev) {
+            // Only "BattleField" can use scroll
+            if(this.game.state.current != "BattleField") {
+                return
+            }
+            var state = this.game.state.getCurrentState()
+            if(key == Phaser.Keyboard.RIGHT || key == 'd')  { // Arrow not working now
+               state.ScrollDirection = Input.SCROLL_DIRECTION.RIGHT
+            }
+
+            if(key == Phaser.Keyboard.LEFT || key == 'a') {
+                state.ScrollDirection = Input.SCROLL_DIRECTION.LEFT
+            }
+        }
+    }
+
+    OnKeyUp() {
+        return function(key, ev) {
+            // Only "BattleField" can use scroll
+            if(this.game.state.current != "BattleField") {
+                return
+            }
+            var state = this.game.state.getCurrentState()
+            state.ScrollDirection = Input.SCROLL_DIRECTION.STOP
         }
     }
 

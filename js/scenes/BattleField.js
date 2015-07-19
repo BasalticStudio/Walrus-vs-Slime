@@ -16,6 +16,7 @@ Scenes.BattleField = function(game) {
         Walrus: null,
         Slime: null
     }
+    this.ScrollDirection = Input.SCROLL_DIRECTION.STOP
 }
 
 Scenes.BattleField.prototype = {
@@ -33,6 +34,7 @@ Scenes.BattleField.prototype = {
     },
 
     update: function() {
+        this.handleScrolling()
     },
 
     initLayers: function() {
@@ -51,5 +53,16 @@ Scenes.BattleField.prototype = {
 
         this.CollisionGroup.Slime = this.game.physics.p2.createCollisionGroup()
         this.CollisionGroup.Walrus = this.game.physics.p2.createCollisionGroup()
+    },
+
+    handleScrolling: function() {
+        switch(this.ScrollDirection) {
+            case Input.SCROLL_DIRECTION.RIGHT:
+                this.camera.x += Input.SCROLL_SPEED
+                break
+            case Input.SCROLL_DIRECTION.LEFT:
+                this.camera.x -= Input.SCROLL_SPEED
+                break
+        }
     }
 }
