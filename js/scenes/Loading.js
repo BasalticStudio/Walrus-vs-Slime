@@ -3,12 +3,12 @@
  *
  */
 
-States.Loading = function(game) {
+Scenes.Loading = function(game) {
     this.targetState = null
     this.preloadList = {}
 }
 
-States.Loading.prototype = {
+Scenes.Loading.prototype = {
     init: function(targetState, preloadList) {
         this.targetState = targetState
         this.preloadList = preloadList || {}

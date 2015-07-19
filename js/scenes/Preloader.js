@@ -4,7 +4,7 @@
  * Using for preload game assets
  */
 
-States.Preloader = {
+Scenes.Preloader = {
     preload: function() {
 
         // Main Menu

@@ -3,6 +3,7 @@
  */
 
 window.States  = window.States  || {}
+window.Scenes  = window.Scenes  || {}
 window.Objects = window.Objects || {}
 window.Input   = window.Input   || {}
 

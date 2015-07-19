@@ -5,7 +5,7 @@
  *
  */
 
-States.Boot = {
+Scenes.Boot = {
     init: function() {
         this.input.maxPointers = 1;
         this.stage.disableVisibilityChange =true

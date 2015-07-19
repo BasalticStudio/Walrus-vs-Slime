@@ -7,13 +7,13 @@
         /* Add Game states */
 
         // Initializer
-        Game.state.add('Boot', States.Boot)
-        Game.state.add('Preloader', States.Preloader)
-        Game.state.add('Loading', States.Loading)
+        Game.state.add('Boot', Scenes.Boot)
+        Game.state.add('Preloader', Scenes.Preloader)
+        Game.state.add('Loading', Scenes.Loading)
 
         // Game Scene
-        Game.state.add('MainMenu', States.MainMenu)
-        Game.state.add('BattleField', States.BattleField)
+        Game.state.add('MainMenu', Scenes.MainMenu)
+        Game.state.add('BattleField', Scenes.BattleField)
 
         // Start Game
         Game.state.start('Boot')

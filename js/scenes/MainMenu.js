@@ -3,13 +3,13 @@
  *
  */
 
-States.MainMenu = function(game) {
+Scenes.MainMenu = function(game) {
     this.ui = {
         startGame: null
     }
 }
 
-States.MainMenu.prototype = {
+Scenes.MainMenu.prototype = {
     create: function() {
 
         // Align to center

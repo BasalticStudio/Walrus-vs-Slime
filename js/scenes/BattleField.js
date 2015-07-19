@@ -4,7 +4,7 @@
  * The main game scene, player will defeat each other here.
  */
 
-States.BattleField = function(game) {
+Scenes.BattleField = function(game) {
     this.GameScene = null
     this.Layer = {
         Background: null,
@@ -18,7 +18,7 @@ States.BattleField = function(game) {
     }
 }
 
-States.BattleField.prototype = {
+Scenes.BattleField.prototype = {
     init: function() {
         this.initLayers()
         this.initPhysics()
