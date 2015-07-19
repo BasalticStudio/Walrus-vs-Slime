@@ -11,6 +11,11 @@ Objects.Monster = class Monster extends Phaser.Sprite {
 
         this.team = team
         this.active = true
+        this.state = States.MonsterMove
+
+        this.type = Types.Monster
+
+        this.attackTarget = null
 
         this.initCollision()
     }
@@ -26,27 +31,41 @@ Objects.Monster = class Monster extends Phaser.Sprite {
         switch(this.team) {
             case Teams.Walrus:
                 this.body.setCollisionGroup(state.CollisionGroup.Walrus)
-                this.body.collides(state.CollisionGroup.Slime, this.onCollision, this)
+                this.body.collides(state.CollisionGroup.Slime)
                 break
             case Teams.Slime:
                 this.body.setCollisionGroup(state.CollisionGroup.Slime)
-                this.body.collides(state.CollisionGroup.Walrus, this.onCollision, this)
+                this.body.collides(state.CollisionGroup.Walrus)
                 break
         }
+
+        this.body.onBeginContact.add(this.onBeginContact, this)
+        this.body.onEndContact.add(this.onEndContact, this)
     }
 
     update() {
-        this.body.setZeroVelocity()
-        if(!this.active) { return } // Pause activity
-        this.move()
+        this.state.update(this)
     }
 
-    move() {
-        this.body.moveRight(500)
+    onBeginContact(other) {
+        this.attackTarget = other.sprite
+        this.state.handleEvent(this, States.Monster.Events.BeginContact)
     }
 
-    onCollision() {
-        console.log("Collision!")
-        this.active = false
+    onEndContact(other) {
+        this.attackTarget = null
+        this.state.handleEvent(this, States.Monster.Events.EndContact)
+    }
+
+    setState(newState) {
+        this.state = newState
+    }
+
+    tryAttack() {
+        if(this.attackTarget.type == Types.Tower) {
+            if(this.attackTarget.team != this.team) {
+                this.attackTarget.kill()
+            }
+        }
     }
 }

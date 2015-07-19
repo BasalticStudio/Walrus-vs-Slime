@@ -29,8 +29,7 @@ Scenes.BattleField.prototype = {
         this.world.setBounds(0, 0, 3000, 768)
         this.Layer.Objects.add(new Objects.Tower(this.game, 'dev_Tower', 0, Teams.Walrus))
         this.Layer.Objects.add(new Objects.Tower(this.game, 'dev_Tower', 600, Teams.Slime))
-        this.Layer.Objects.add(new Objects.Monster(this.game, 'dev_Enemy', 200,Teams.Walrus))
-        this.Layer.Objects.add(new Objects.Monster(this.game, 'dev_Enemy', 0, Teams.Slime))
+        this.Layer.Objects.add(new Objects.Monster(this.game, 'dev_Enemy', 0, Teams.Walrus))
     },
 
     update: function() {

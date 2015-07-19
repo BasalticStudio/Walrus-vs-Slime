@@ -11,6 +11,8 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         this.body.kinematic = true
         this.team = team
 
+        this.type = Types.Tower
+
         this.initCollision()
     }
 
