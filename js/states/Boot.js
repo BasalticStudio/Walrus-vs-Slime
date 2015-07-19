@@ -39,6 +39,9 @@ States.Boot = {
 
         // Enable FPS
         this.game.time.advancedTiming = true
+
+        // Start System
+        this.physics.startSystem(Phaser.Physics.P2JS)
     },
 
     gameResized: function(width, height) {
