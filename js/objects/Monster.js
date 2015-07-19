@@ -13,7 +13,6 @@ Objects.Monster = class Monster extends Phaser.Sprite {
 
     update() {
         if(!this.active) { return } // Pause activity
-        console.log("Active")
         this.move()
     }
 

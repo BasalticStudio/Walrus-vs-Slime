@@ -15,7 +15,6 @@
         Game.state.add('MainMenu', States.MainMenu)
         Game.state.add('BattleField', States.BattleField)
 
-
         // Start Game
         Game.state.start('Boot')
     }

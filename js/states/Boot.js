@@ -30,6 +30,15 @@ States.Boot = {
 
     create: function() {
         this.state.start('Preloader')
+
+        // Setup Input controller
+        var inputHandler = new Input()
+        this.input.touch.touchStartCallback = inputHandler.OnTouchStart()
+        this.input.touch.touchMoveCallback = inputHandler.OnTouchMove()
+        this.input.touch.touchEndCallback = inputHandler.OnTouchEnd()
+
+        // Enable FPS
+        this.game.time.advancedTiming = true
     },
 
     gameResized: function(width, height) {

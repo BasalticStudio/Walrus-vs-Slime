@@ -2,8 +2,9 @@
  * Game Core
  */
 
-window.States = window.States   || {}
+window.States  = window.States  || {}
 window.Objects = window.Objects || {}
+window.Input   = window.Input   || {}
 
 // Define team enum list
 window.Teams = {
