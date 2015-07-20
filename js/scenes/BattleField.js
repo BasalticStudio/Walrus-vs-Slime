@@ -18,6 +18,7 @@ Scenes.BattleField = function(game) {
     }
     this.ScrollDirection = Input.SCROLL_DIRECTION.STOP
     this.PlayerTower = null
+    this.EnemyTower = null
 }
 
 Scenes.BattleField.prototype = {
@@ -31,12 +32,7 @@ Scenes.BattleField.prototype = {
     create: function() {
         this.world.setBounds(0, 0, 4000, 768)
         this.Layer.Objects.add(this.PlayerTower)
-        this.Layer.Objects.add(new Objects.Monster(this.game, 'dev_Enemy', 0, Teams.Walrus))
-
-        this.Layer.Objects.add(new Objects.Tower(this.game, 'dev_Tower', 800, Teams.Slime))
-        this.Layer.Objects.add(new Objects.Monster(this.game, 'dev_Enemy', 1000, Teams.Slime))
-
-
+        this.Layer.Objects.add(this.EnemyTower)
     },
 
     update: function() {
@@ -61,7 +57,8 @@ Scenes.BattleField.prototype = {
     },
 
     initGame: function() {
-        this.PlayerTower = new Objects.Tower(this.game, 'dev_Tower', 300, Game.team)
+        this.PlayerTower = Factory.Tower.generatePlayer(this.game)
+        this.EnemyTower = Factory.Tower.generateEnemy(this.game)
     },
 
     initUI: function() {
