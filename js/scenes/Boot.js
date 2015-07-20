@@ -44,6 +44,9 @@ Scenes.Boot = {
 
         // Start System
         this.physics.startSystem(Phaser.Physics.P2JS)
+
+        // Initialize Game
+        Helper.ResetGame()
     },
 
     gameResized: function(width, height) {

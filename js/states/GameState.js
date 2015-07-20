@@ -15,5 +15,8 @@
         }
     }
 
+    Helper.ResetGame = function() {
+        window.Game = new GameState()
+    }
     Game = new GameState()
 }())
