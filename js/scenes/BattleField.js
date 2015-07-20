@@ -17,23 +17,26 @@ Scenes.BattleField = function(game) {
         Slime: null
     }
     this.ScrollDirection = Input.SCROLL_DIRECTION.STOP
+    this.PlayerTower = null
 }
 
 Scenes.BattleField.prototype = {
     init: function() {
         this.initLayers()
         this.initPhysics()
+        this.initGame()
+        this.initUI()
     },
 
     create: function() {
         this.world.setBounds(0, 0, 4000, 768)
-        this.Layer.Objects.add(new Objects.Tower(this.game, 'dev_Tower', 100, Teams.Walrus))
+        this.Layer.Objects.add(this.PlayerTower)
         this.Layer.Objects.add(new Objects.Monster(this.game, 'dev_Enemy', 0, Teams.Walrus))
 
         this.Layer.Objects.add(new Objects.Tower(this.game, 'dev_Tower', 800, Teams.Slime))
         this.Layer.Objects.add(new Objects.Monster(this.game, 'dev_Enemy', 1000, Teams.Slime))
 
-        this.add.image(0, 0, 'UI_Placehold', '', this.UI)
+        this.add.image(0, 568, 'UI_Placehold', '', this.UI)
     },
 
     update: function() {
@@ -52,7 +55,7 @@ Scenes.BattleField.prototype = {
 
         // Setup Camera
         this.UI.fixedToCamera = true
-        this.UI.cameraOffset.setTo(0, 568)
+        this.UI.cameraOffset.setTo(0, 0)
     },
 
     initPhysics: function() {
@@ -60,6 +63,14 @@ Scenes.BattleField.prototype = {
 
         this.CollisionGroup.Slime = this.game.physics.p2.createCollisionGroup()
         this.CollisionGroup.Walrus = this.game.physics.p2.createCollisionGroup()
+    },
+
+    initGame: function() {
+        this.PlayerTower = new Objects.Tower(this.game, 'dev_Tower', 300, Game.team)
+    },
+
+    initUI: function() {
+        this.UI.add(new Objects.ManaUI(this.game, 40, 20, this.PlayerTower))
     },
 
     handleScrolling: function() {
