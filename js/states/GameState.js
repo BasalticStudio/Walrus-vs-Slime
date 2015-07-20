@@ -9,6 +9,7 @@
             this.loser = -1
             this.PlayerTower = null
             this.EnemyTower = null
+            this.Socket = null
         }
 
         setTeam(team) {
