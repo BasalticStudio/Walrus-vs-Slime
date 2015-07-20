@@ -22,6 +22,11 @@ window.Types = {
     Monster: 1001
 }
 
+// Define monster types
+window.MonsterType = {
+    Normal: 0
+}
+
 // Game Settings
 window.Settings = {
     UI: {
