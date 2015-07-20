@@ -52,8 +52,7 @@
         }
 
         update(object) {
-            object.body.setZeroVelocity()
-            object.body.moveRight(500)
+            object.move()
         }
     }
 

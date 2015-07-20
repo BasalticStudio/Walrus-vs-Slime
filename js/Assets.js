@@ -11,4 +11,5 @@ Assets.MainMenu = {
 Assets.BattleField =  {
     'dev_Enemy': 'monsters/dev_Enemy.png',
     'dev_Tower': 'towers/dev_Tower01.png',
+    'UI_Placehold': 'ui/UI_Placehold.png'
 }

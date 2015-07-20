@@ -6,16 +6,30 @@
 
 Objects.Monster = class Monster extends Phaser.Sprite {
     constructor(game, key, x, team) {
-        super(game, x, 668, key, '')
-        game.physics.enable(this, Phaser.Physics.P2JS)
+        // Initialize Object
+        super(game, x, 0, key, '')
+        this.y = Helper.CalcLand(this.game, this)
 
+        // Enable Physics
+        game.physics.enable(this, Phaser.Physics.P2JS, Debug)
+
+        // Setup Team
         this.team = team
         this.active = true
         this.state = States.MonsterMove
 
+        // Setup Object Type
         this.type = Types.Monster
 
-        this.attackTarget = null
+        // Initialize
+        this._attackTarget = null
+        this._speed = 300
+        this._health = 500
+        this._damage = 20
+        this._minDamageRatio = 0.8
+        this._maxDamageRatio = 1.2
+        this._attackSpeed = 0.25
+        this._coolDown = false
 
         this.initCollision()
     }
@@ -44,6 +58,8 @@ Objects.Monster = class Monster extends Phaser.Sprite {
     }
 
     update() {
+        this.body.setZeroVelocity() // Force stop physics simulate
+        this.body.setZeroRotation()
         this.state.update(this)
     }
 
@@ -61,11 +77,49 @@ Objects.Monster = class Monster extends Phaser.Sprite {
         this.state = newState
     }
 
+    move() {
+        // Player team is "Move Right"
+        if(this.team == Game.team) {
+            this.body.moveRight(this._speed)
+        } else {
+            this.body.moveLeft(this._speed)
+        }
+    }
+
     tryAttack() {
-        if(this.attackTarget.type == Types.Tower) {
-            if(this.attackTarget.team != this.team) {
-                this.attackTarget.kill()
-            }
+        // Do nothing when meet same team
+        if(this.attackTarget.team == this.team) {
+            return
+        }
+
+        if(this._coolDown) { // Do nothing when cooldown
+            return
+        }
+
+        switch(this.attackTarget.type) {
+            case Types.Tower:
+                this.attackTarget.destroy()
+                this.coolDown()
+                break
+            case Types.Monster:
+                this.attackTarget.damage(this.game.rnd.realInRange(this._damage * this._minDamageRatio, this._damage * this._maxDamageRatio))
+                this.coolDown()
+                break
+        }
+    }
+
+    coolDown() {
+        this._coolDown = true
+        this.game.time.events.add(Phaser.Timer.SECOND * this._attackSpeed, () => { this._coolDown = false })
+    }
+
+    damage(damage) {
+        // Be damagerd
+        this._health -= damage
+
+        if(this._health <= 0) {
+            // Dead
+            this.destroy()
         }
     }
 }

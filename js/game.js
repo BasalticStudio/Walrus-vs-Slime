@@ -2,21 +2,21 @@
 
     window.onload = function() {
         // Initialize Game
-        var Game = new Phaser.Game(1024, 768, Phaser.AUTO, '')
+        let game = new Phaser.Game(1024, 768, Phaser.AUTO, '')
 
         /* Add Game states */
 
         // Initializer
-        Game.state.add('Boot', Scenes.Boot)
-        Game.state.add('Preloader', Scenes.Preloader)
-        Game.state.add('Loading', Scenes.Loading)
+        game.state.add('Boot', Scenes.Boot)
+        game.state.add('Preloader', Scenes.Preloader)
+        game.state.add('Loading', Scenes.Loading)
 
         // Game Scene
-        Game.state.add('MainMenu', Scenes.MainMenu)
-        Game.state.add('BattleField', Scenes.BattleField)
+        game.state.add('MainMenu', Scenes.MainMenu)
+        game.state.add('BattleField', Scenes.BattleField)
 
         // Start Game
-        Game.state.start('Boot')
+        game.state.start('Boot')
     }
 
 })()

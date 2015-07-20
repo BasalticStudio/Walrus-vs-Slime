@@ -6,11 +6,13 @@
 
 Objects.Tower = class Tower extends Phaser.Sprite {
     constructor(game, key, x, team) {
-        super(game, x, 588, key, '')
-        game.physics.enable(this, Phaser.Physics.P2JS)
-        this.body.kinematic = true
-        this.team = team
+        super(game, x, 0, key, '')
+        this.y = Helper.CalcLand(this.game, this)
 
+        game.physics.enable(this, Phaser.Physics.P2JS, Debug)
+        this.body.kinematic = true
+
+        this.team = team
         this.type = Types.Tower
 
         this.initCollision()

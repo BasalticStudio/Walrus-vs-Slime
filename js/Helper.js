@@ -17,9 +17,15 @@ Helper.RetinaFilter = function(filename, aspect) {
 }
 
 Helper.LoadImages = function(loader, list, aspect) {
-    var key = ""
+    let key = ""
     aspect = aspect || 0
     for(key in list) {
         loader.image(key, "img/" + Helper.RetinaFilter(list[key], aspect))
     }
+}
+
+Helper.CalcLand = function(game, object) {
+    let gameHeight = game.height
+    let halfHeight = object.height / 2
+    return gameHeight - Settings.UI.Height - halfHeight
 }

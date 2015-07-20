@@ -2,10 +2,12 @@
  * Game Core
  */
 
+window.Debug   = window.Debug   || true
 window.States  = window.States  || {}
 window.Scenes  = window.Scenes  || {}
 window.Objects = window.Objects || {}
 window.Input   = window.Input   || {}
+window.Game    = window.Input   || {}
 
 // Define team enum list
 window.Teams = {
@@ -20,3 +22,9 @@ window.Types = {
     Monster: 1001
 }
 
+// Game Settings
+window.Settings = {
+    UI: {
+        Height: 200
+    }
+}

@@ -26,10 +26,14 @@ Scenes.BattleField.prototype = {
     },
 
     create: function() {
-        this.world.setBounds(0, 0, 3000, 768)
-        this.Layer.Objects.add(new Objects.Tower(this.game, 'dev_Tower', 0, Teams.Walrus))
-        this.Layer.Objects.add(new Objects.Tower(this.game, 'dev_Tower', 600, Teams.Slime))
+        this.world.setBounds(0, 0, 4000, 768)
+        this.Layer.Objects.add(new Objects.Tower(this.game, 'dev_Tower', 100, Teams.Walrus))
         this.Layer.Objects.add(new Objects.Monster(this.game, 'dev_Enemy', 0, Teams.Walrus))
+
+        this.Layer.Objects.add(new Objects.Tower(this.game, 'dev_Tower', 800, Teams.Slime))
+        this.Layer.Objects.add(new Objects.Monster(this.game, 'dev_Enemy', 1000, Teams.Slime))
+
+        this.add.image(0, 0, 'UI_Placehold', '', this.UI)
     },
 
     update: function() {
@@ -39,12 +43,16 @@ Scenes.BattleField.prototype = {
     initLayers: function() {
         // Initialize Basic Layer
         this.GameScene = this.add.group(this.world, 'GameScene')
-        this.GameUI = this.add.group(this.world, 'UI')
+        this.UI = this.add.group(this.world, 'UI')
 
         // Add game scene layers
         this.Layer.Background = this.add.group(this.GameScene, 'Background')
         this.Layer.Objects = this.add.group(this.GameScene, 'Objects')
         this.Layer.SkillFx = this.add.group(this.GameScene, 'SkillFx')
+
+        // Setup Camera
+        this.UI.fixedToCamera = true
+        this.UI.cameraOffset.setTo(0, 568)
     },
 
     initPhysics: function() {
