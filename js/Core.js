@@ -30,7 +30,7 @@ Objects.Monsters = {}
 // Define monster types
 window.MonsterType = {
     Normal      : 0,
-    HighDamage  : 1,
+    HighAttack  : 1,
     HighSpeed   : 2,
     HighDefense : 3,
     Ranger      : 4,

@@ -19,7 +19,7 @@ Objects.Tower = class Tower extends Phaser.Sprite {
 
         // Initialize
         this._health = 1000
-        this._mana = 0
+        this._mana = 500
         this._maxMana = 500
         this._manaRecover = 10
         this._rank = 1
@@ -55,6 +55,36 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         if(this._health <= 0) {
             // Dead event
             this.destroy()
+        }
+    }
+
+    spawn(type) {
+        let Monsters = Objects.Monsters
+        let MonsterClass = Monsters.Normal
+        switch(type) {
+            case MonsterType.Normal:
+                MonsterClass = Monsters.Normal
+                break
+            case MonsterType.HighAttack:
+                MonsterClass = Monsters.Attack
+                break
+            case MonsterType.HighDefense:
+                MonsterClass = Monsters.Defense
+                break
+            case MonsterType.HighSpeed:
+                MonsterClass = Monsters.Speed
+                break
+            case MonsterType.Ranger:
+                MonsterClass = Monsters.Ranger
+                break
+            case MonsterType.Super:
+                MonsterClass = Monsters.Super
+                break
+        }
+
+        if(this._mana >= MonsterClass.Cost) {
+            this._mana -= MonsterClass.Cost
+            this.parent.add(new MonsterClass(this.game, this.x, this.team))
         }
     }
 

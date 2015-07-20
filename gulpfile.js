@@ -24,6 +24,8 @@ gulp.task('js', function() {
             'js/Core.js',
             'js/Assets.js',
             'js/Helper.js',
+            'js/Command.js',
+            'js/MonsterData.js',
             'js/**/*.js',
             'js/game.js'
         ]))

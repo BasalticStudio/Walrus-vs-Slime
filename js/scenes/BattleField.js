@@ -37,6 +37,7 @@ Scenes.BattleField.prototype = {
 
     update: function() {
         this.handleScrolling()
+        Command.Resolver.resolve()
     },
 
     initLayers: function() {
@@ -57,8 +58,8 @@ Scenes.BattleField.prototype = {
     },
 
     initGame: function() {
-        this.PlayerTower = Factory.Tower.generatePlayer(this.game)
-        this.EnemyTower = Factory.Tower.generateEnemy(this.game)
+        this.PlayerTower = Game.PlayerTower = Factory.Tower.generatePlayer(this.game)
+        this.EnemyTower = Game.EnemyTower = Factory.Tower.generateEnemy(this.game)
     },
 
     initUI: function() {

@@ -6,6 +6,8 @@
     class GameState {
         constructor() {
             this.team = Teams.Walrus
+            this.PlayerTower = null
+            this.EnemyTower = null
         }
 
         setTeam(team) {
