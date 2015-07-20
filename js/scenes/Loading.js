@@ -18,6 +18,11 @@ Scenes.Loading.prototype = {
         Helper.LoadImages(this.load, this.preloadList, this.game.device.pixelRatio)
     },
 
+    create: function() {
+        // Add simple loading message
+        this.add.text(450, 384, "Loading...", {font: "normal 24px 'Open Sans'", fill: 'white'})
+    },
+
     update: function() {
         if(this.load.hasLoaded) {
             this.state.start(this.targetState)

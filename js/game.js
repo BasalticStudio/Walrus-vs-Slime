@@ -14,6 +14,7 @@
         // Game Scene
         game.state.add('MainMenu', Scenes.MainMenu)
         game.state.add('BattleField', Scenes.BattleField)
+        game.state.add('Result', Scenes.Result)
 
         // Start Game
         game.state.start('Boot')

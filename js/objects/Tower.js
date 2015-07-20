@@ -65,7 +65,8 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         this._health -= damage
         if(this._health <= 0) {
             // Dead event
-            this.destroy()
+            Game.loser = this.team
+            this.game.state.start('Result')
         }
     }
 
