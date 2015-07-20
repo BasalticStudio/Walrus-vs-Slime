@@ -36,7 +36,7 @@ Scenes.MainMenu.prototype = {
 
     startGame: function() {
         // Connection to game server
-        Game.Socket = new Socket()
+        // Game.Socket = new Socket()
         this.state.start('Loading', true, false, 'BattleField', Assets.BattleField)
     }
 }

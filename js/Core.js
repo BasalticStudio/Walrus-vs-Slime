@@ -2,7 +2,7 @@
  * Game Core
  */
 
-window.Debug   = window.Debug   || true
+window.Debug   = window.Debug   || false
 window.States  = window.States  || {}
 window.Scenes  = window.Scenes  || {}
 window.Objects = window.Objects || {}

@@ -18,9 +18,15 @@ Helper.RetinaFilter = function(filename, aspect) {
 
 Helper.LoadImages = function(loader, list, aspect) {
     let key = ""
+    let data = null
     aspect = aspect || 0
     for(key in list) {
-        loader.image(key, "img/" + Helper.RetinaFilter(list[key], aspect))
+        data = list[key]
+        if(data instanceof Array) {
+            loader.spritesheet(key, "img/" + Helper.RetinaFilter(data[0], aspect), data[1], data[2], data[3])
+        } else {
+            loader.image(key, "img/" + Helper.RetinaFilter(data, aspect))
+        }
     }
 }
 

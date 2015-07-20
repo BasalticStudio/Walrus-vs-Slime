@@ -61,6 +61,7 @@
             switch(ev) {
                 case Events.EndContact:
                     object.setState(States.MonsterMove)
+                    object.animations.play('Walk')
                     break
             }
         }

@@ -8,6 +8,11 @@
 
     Objects.Monsters = {}
 
+    // Helper
+    var MonsterSpriteKey = function(team, type) {
+        return team == Teams.Walrus ? "Walrus_" + type : "Slime_" + type
+    }
+
     class Monster extends Phaser.Sprite {
         constructor(game, key, x, team) {
             // Initialize Object
@@ -39,6 +44,9 @@
             this._coolDown = false
 
             this.initCollision()
+            this.setupAnimation(key)
+
+            this.animations.play('Walk')
         }
 
         static get Cost() {
@@ -66,6 +74,13 @@
 
             this.body.onBeginContact.add(this.onBeginContact, this)
             this.body.onEndContact.add(this.onEndContact, this)
+        }
+
+        setupAnimation(key) {
+            let AnimationConfig = Animation[key]
+            this.animations.add('Walk', AnimationConfig.Walk, 4, true)
+            this.animations.add('Attack', AnimationConfig.Attack, 4)
+            this.animations.add('Dead', AnimationConfig.Attack, 4)
         }
 
         update() {
@@ -116,6 +131,7 @@
             switch(this.attackTarget.type) {
                 case Types.Tower:
                 case Types.Monster:
+                    this.animations.play('Attack')
                     this.attackTarget.damage(this.game.rnd.realInRange(this._damage * this._minDamageRatio, this._damage * this._maxDamageRatio))
                     this.coolDown()
                     break
@@ -152,7 +168,7 @@
     // Monster Type : Normal
     Objects.Monsters.Normal = class NormalMonster extends Monster {
         constructor(game, x, team) {
-            super(game, 'dev_Enemy', x, team)
+            super(game, MonsterSpriteKey(team, "Normal"), x, team)
 
             let Status = MonsterData[team][MonsterType.Normal]
             this.setupStatus(Status)
@@ -166,7 +182,7 @@
     // Monster Type : High Attack
     Objects.Monsters.Attack = class AttackMonster extends Monster {
         constructor(game, x, team) {
-            super(game, 'dev_Enemy', x, team)
+            super(game, MonsterSpriteKey(team, "Attack"), x, team)
 
             let Status = MonsterData[team][MonsterType.HighAttack]
             this.setupStatus(Status)
@@ -180,7 +196,7 @@
     // Monster Type : High Defense
     Objects.Monsters.Defense = class DefenseMonster extends Monster {
         constructor(game, x, team) {
-            super(game, 'dev_Enemy', x, team)
+            super(game, MonsterSpriteKey(team, "Defense"), x, team)
 
             let Status = MonsterData[team][MonsterType.HighDefense]
             this.setupStatus(Status)
@@ -194,7 +210,7 @@
     // Monster Type : High Speed
     Objects.Monsters.Speed = class SpeedMonster extends Monster {
         constructor(game, x, team) {
-            super(game, 'dev_Enemy', x, team)
+            super(game, MonsterSpriteKey(team, "Speed"), x, team)
 
             let Status = MonsterData[team][MonsterType.HighSpeed]
             this.setupStatus(Status)
@@ -208,7 +224,7 @@
     // Monster Type : Ranger
     Objects.Monsters.Ranger = class RangerMonster extends Monster {
         constructor(game, x, team) {
-            super(game, 'dev_Enemy', x, team)
+            super(game, MonsterSpriteKey(team, "Ranger"), x, team)
 
             this.body.setRectangle(200, 100, 50)
             this.initCollision() // Reconfig collision group
@@ -225,7 +241,7 @@
     // Monster Type : Super
     Objects.Monsters.Super = class SuperMonster extends Monster {
         constructor(game, x, team) {
-            super(game, 'dev_Enemy', x, team)
+            super(game, MonsterSpriteKey(team, "Super"), x, team)
 
             let Status = MonsterData[team][MonsterType.Super]
             this.setupStatus(Status)
