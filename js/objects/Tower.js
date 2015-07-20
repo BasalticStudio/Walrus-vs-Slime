@@ -19,8 +19,13 @@ Objects.Tower = class Tower extends Phaser.Sprite {
 
         // Initialize
         this._health = 1000
-        this._mana = 500
+        this._mana = 0
+        this._maxMana = 500
+        this._manaRecover = 10
         this._rank = 1
+
+        // Setup Timer
+        this.game.time.events.loop(Phaser.Timer.SECOND * 0.5, this.recoverMana, this)
 
         this.initCollision()
     }
@@ -50,6 +55,14 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         if(this._health <= 0) {
             // Dead event
             this.destroy()
+        }
+    }
+
+    recoverMana() {
+        this._mana += this._manaRecover
+
+        if(this._mana > this._maxMana) {
+            this._mana = this._maxMana
         }
     }
 
