@@ -9,11 +9,18 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         super(game, x, 0, key, '')
         this.y = Helper.CalcLand(this.game, this)
 
+        // Enable physics
         game.physics.enable(this, Phaser.Physics.P2JS, Debug)
         this.body.kinematic = true
 
+        // Setup object
         this.team = team
         this.type = Types.Tower
+
+        // Initialize
+        this._health = 1000
+        this._mana = 500
+        this._rank = 1
 
         this.initCollision()
     }
@@ -37,4 +44,13 @@ Objects.Tower = class Tower extends Phaser.Sprite {
                 break
         }
     }
+
+    damage(damage) {
+        this._health -= damage
+        if(this._health <= 0) {
+            // Dead event
+            this.destroy()
+        }
+    }
+
 }

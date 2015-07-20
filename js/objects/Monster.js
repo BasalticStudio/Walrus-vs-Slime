@@ -34,6 +34,10 @@ Objects.Monster = class Monster extends Phaser.Sprite {
         this.initCollision()
     }
 
+    static get cost() {
+        return 50
+    }
+
     initCollision() {
         if(this.game.state.current != "BattleField") {
             // Do nothing when create outside BattleField
@@ -98,9 +102,6 @@ Objects.Monster = class Monster extends Phaser.Sprite {
 
         switch(this.attackTarget.type) {
             case Types.Tower:
-                this.attackTarget.destroy()
-                this.coolDown()
-                break
             case Types.Monster:
                 this.attackTarget.damage(this.game.rnd.realInRange(this._damage * this._minDamageRatio, this._damage * this._maxDamageRatio))
                 this.coolDown()
