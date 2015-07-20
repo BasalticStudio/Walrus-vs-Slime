@@ -51,7 +51,8 @@ Scenes.BattleField.prototype = {
     },
 
     initPhysics: function() {
-        this.game.physics.p2.setImpactEvents(true);
+        //this.game.physics.p2.setImpactEvents(true);
+        this.game.physics.p2.setBounds(0, 0, 4000, 768)
 
         this.CollisionGroup.Slime = this.game.physics.p2.createCollisionGroup()
         this.CollisionGroup.Walrus = this.game.physics.p2.createCollisionGroup()

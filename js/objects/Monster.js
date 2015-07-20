@@ -13,6 +13,7 @@
             // Initialize Object
             super(game, x, 0, key, '')
             this.y = Helper.CalcLand(this.game, this)
+            this.checkWorldBonuds = true
 
             // Enable Physics
             game.physics.enable(this, Phaser.Physics.P2JS, Debug)
@@ -74,7 +75,9 @@
         }
 
         onBeginContact(other) {
-            this.attackTarget = other.sprite
+            if(other && other.sprite) {
+                this.attackTarget = other.sprite
+            }
             this.state.handleEvent(this, States.Monster.Events.BeginContact)
         }
 
@@ -97,6 +100,10 @@
         }
 
         tryAttack() {
+            // Do nothing when no target
+            if(!this.attackTarget) {
+                return
+            }
             // Do nothing when meet same team
             if(this.attackTarget.team == this.team) {
                 return
@@ -202,6 +209,9 @@
     Objects.Monsters.Ranger = class RangerMonster extends Monster {
         constructor(game, x, team) {
             super(game, 'dev_Enemy', x, team)
+
+            this.body.setRectangle(200, 100, 50)
+            this.initCollision() // Reconfig collision group
 
             let Status = MonsterData[team][MonsterType.Ranger]
             this.setupStatus(Status)
