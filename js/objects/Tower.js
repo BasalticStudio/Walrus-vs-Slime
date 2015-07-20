@@ -50,6 +50,10 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         }
     }
 
+    get Mana() {
+        return this._mana
+    }
+
     damage(damage) {
         this._health -= damage
         if(this._health <= 0) {
@@ -59,32 +63,10 @@ Objects.Tower = class Tower extends Phaser.Sprite {
     }
 
     spawn(type) {
-        let Monsters = Objects.Monsters
-        let MonsterClass = Monsters.Normal
-        switch(type) {
-            case MonsterType.Normal:
-                MonsterClass = Monsters.Normal
-                break
-            case MonsterType.HighAttack:
-                MonsterClass = Monsters.Attack
-                break
-            case MonsterType.HighDefense:
-                MonsterClass = Monsters.Defense
-                break
-            case MonsterType.HighSpeed:
-                MonsterClass = Monsters.Speed
-                break
-            case MonsterType.Ranger:
-                MonsterClass = Monsters.Ranger
-                break
-            case MonsterType.Super:
-                MonsterClass = Monsters.Super
-                break
-        }
-
+        let MonsterClass = Factory.Monster.getMonsterClass(type)
         if(this._mana >= MonsterClass.Cost) {
             this._mana -= MonsterClass.Cost
-            this.parent.add(new MonsterClass(this.game, this.x, this.team))
+            this.parent.add(Factory.Monster.create(MonsterClass, this.game, this.x, this.team))
         }
     }
 

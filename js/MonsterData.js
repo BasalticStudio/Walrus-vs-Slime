@@ -5,6 +5,7 @@
 */
 
 window.MonsterData = window.MonsterData || {}
+window.MonsterCost = window.MonsterCost || {}
 
 // Define teams
 MonsterData[Teams.Walrus] = {}

@@ -7,12 +7,27 @@ Objects.MonsterCardUI = class MonsterCardUI extends Phaser.Button {
         super(game, x, y, key)
 
         this.monsterType = type
+        this.monsterClass = Factory.Monster.getMonsterClass(type)
+        this.monsterCost = this.monsterClass.Cost
 
         // Handle Callback
         this.onInputUp.add(this.onClick, this)
     }
 
+    update() {
+        // TODO: Should switch to card UI
+        if(Game.PlayerTower.Mana >= this.monsterCost) {
+            this.alpha = 1
+        } else {
+            this.alpha = 0.5
+        }
+    }
+
     onClick() {
         Command.Resolver.push(new Command.Spawn(this.game, Game.team, this.monsterType))
+    }
+
+    checkMana() {
+
     }
 }
