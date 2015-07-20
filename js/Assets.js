@@ -5,7 +5,9 @@
 window.Assets = window.Assets || {}
 
 Assets.MainMenu = {
-    'btn_StartGame': 'ui/btn_StartGame.png'
+    //'btn_StartGame': 'ui/btn_StartGame.png'
+    'btn_WalrusTeam': 'ui/btn_WalrusTeam.png',
+    'btn_SlimeTeam': 'ui/btn_SlimeTeam.png'
 }
 
 Assets.BattleField =  {
