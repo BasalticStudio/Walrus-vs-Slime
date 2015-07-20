@@ -27,6 +27,9 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         // Setup Timer
         this.game.time.events.loop(Phaser.Timer.SECOND * 0.5, this.recoverMana, this)
 
+        // Signal
+        this.onRankChanged = new Phaser.Signal()
+
         this.initCollision()
     }
 
@@ -54,6 +57,10 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         return this._mana
     }
 
+    get Rank() {
+        return this._rank
+    }
+
     damage(damage) {
         this._health -= damage
         if(this._health <= 0) {
@@ -76,6 +83,30 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         if(this._mana > this._maxMana) {
             this._mana = this._maxMana
         }
+    }
+
+    rankUp() {
+        // Max rank do nothing
+        if(this._rank >= 6) {
+            return
+        }
+
+        let nextRank = this._rank + 1
+        if(this._mana >= TowerData[nextRank].Cost) {
+            this._mana -= TowerData[nextRank].Cost
+            this.refreshStatus(nextRank)
+        }
+    }
+
+    refreshStatus(rank) {
+        let newStatus = TowerData[rank]
+
+        this._health = newStatus.Health
+        this._maxMana = newStatus.Mana
+        this._manaRecover = newStatus.ManaRecover
+        this._rank = rank
+
+        this.onRankChanged.dispatch(rank)
     }
 
 }

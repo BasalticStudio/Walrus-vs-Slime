@@ -13,6 +13,14 @@
         execute() {
 
         }
+
+        getTower() {
+            if(Game.team == this.team) {
+                return Game.PlayerTower
+            } else {
+                return Game.EnemyTower
+            }
+        }
     }
 
     class CommandResolver {
@@ -43,19 +51,19 @@
         }
 
         execute() {
-            let Tower = null
-            if(Game.team == this.team) {
-                Tower = Game.PlayerTower
-            } else {
-                Tower = Game.EnemyTower
-            }
+            this.getTower().spawn(this.type)
+        }
+    }
 
-            Tower.spawn(this.type)
+    class RankUpCommand extends Command {
+        execute() {
+            this.getTower().rankUp()
         }
     }
 
     window.Command = {
         Resolver: new CommandResolver(),
-        Spawn: SpawnCommand
+        Spawn: SpawnCommand,
+        RankUp: RankUpCommand
     }
 }())
