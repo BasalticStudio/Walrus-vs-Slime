@@ -22,39 +22,30 @@ Input = class {
         }
     }
 
-    OnTouchStart() {
-        var self = this
-        return function(ev) {
-            self._pointerData.push({
-                x: ev.touches[0].clientX,
-                y: ev.touches[0].clientY
-            })
-            self.cameraX = this.camera.x
-        }
+    OnTouchStart(ev, game) {
+        this._pointerData.push({
+            x: ev.touches[0].clientX,
+            y: ev.touches[0].clientY
+        })
+        this.cameraX = game.camera.x
     }
 
-    OnTouchEnd() {
-        var self = this
-        return function(ev) {
-            self._pointerData = []
-        }
+    OnTouchEnd(ev, game) {
+        this._pointerData = []
     }
 
-    OnTouchMove() {
-        var self = this
-        return function(ev) {
-            // Only "BattleField" can use scroll
-            if(this.state.current != "BattleField") {
-                return
-            }
-
-            self._pointerData.push({
-                x: ev.touches[0].clientX,
-                y: ev.touches[0].clientY
-            })
-
-            this.camera.x = self.horizontalDragStep()
+    OnTouchMove(ev, game) {
+        // Only "BattleField" can use scroll
+        if(game.state.current != "BattleField") {
+            return
         }
+
+        this._pointerData.push({
+            x: ev.touches[0].clientX,
+            y: ev.touches[0].clientY
+        })
+
+        game.camera.x = this.horizontalDragStep()
     }
 
     OnKeyPress() {

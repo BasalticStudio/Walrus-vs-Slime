@@ -8,13 +8,12 @@
 Scenes.Boot = {
     init: function() {
         this.input.maxPointers = 1;
-        this.stage.disableVisibilityChange =true
+        this.stage.disableVisibilityChange = true
 
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
         this.scale.setMinMax(480, 260, 1024, 768)
         this.scale.pageAlignHorizontally = true
         this.scale.pageAlignVertically = true
-
 
         if(!this.game.device.desktop) {
             // TODO: Handle Mobile use correctly orientation
@@ -33,9 +32,9 @@ Scenes.Boot = {
 
         // Setup Input controller
         var inputHandler = new Input()
-        this.input.touch.touchStartCallback = inputHandler.OnTouchStart()
-        this.input.touch.touchMoveCallback = inputHandler.OnTouchMove()
-        this.input.touch.touchEndCallback = inputHandler.OnTouchEnd()
+        this.input.touch.touchStartCallback = (ev) => { inputHandler.OnTouchStart(ev, this) }
+        this.input.touch.touchMoveCallback = (ev) => { inputHandler.OnTouchMove(ev, this) }
+        this.input.touch.touchEndCallback = (ev) => { inputHandler.OnTouchEnd(ev, this) }
         this.input.keyboard.onPressCallback = inputHandler.OnKeyPress()
         this.input.keyboard.onUpCallback = inputHandler.OnKeyUp()
 
