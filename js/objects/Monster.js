@@ -111,6 +111,7 @@
                 this.body.moveRight(this._speed)
             } else {
                 this.body.moveLeft(this._speed)
+                this.scale.x = -1
             }
         }
 

@@ -13,7 +13,6 @@ Assets.MainMenu = {
 Assets.BattleField =  {
     // Objects
     'dev_Tower': 'towers/dev_Tower01.png',
-    'dev_Enemy': 'monsters/dev_Enemy.png',
 
     // Walrus
     'Walrus_Normal': ['monsters/walrus/m01.png', 200, 200, 4],
@@ -22,6 +21,14 @@ Assets.BattleField =  {
     'Walrus_Attack': ['monsters/walrus/m04.png', 200, 200, 4],
     'Walrus_Speed': ['monsters/walrus/m05.png', 200, 200, 3],
     'Walrus_Super': ['monsters/walrus/m06.png', 300, 300, 2],
+
+    // Slime
+    'Slime_Normal': ['monsters/slime/m01.png', 200, 200, 4],
+    'Slime_Ranger': ['monsters/slime/m02.png', 200, 200, 5],
+    'Slime_Defense': ['monsters/slime/m03.png', 200, 200, 4],
+    'Slime_Attack': ['monsters/slime/m04.png', 200, 200, 4],
+    'Slime_Speed': ['monsters/slime/m05.png', 200, 200, 3],
+    'Slime_Super': ['monsters/slime/m06.png', 300, 300, 5],
 
     // UI
     'UI_Placehold': 'ui/UI_Placehold.png',
