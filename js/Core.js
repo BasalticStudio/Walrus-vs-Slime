@@ -43,3 +43,10 @@ window.Settings = {
         Height: 200
     }
 }
+
+window.GameStatus = {
+    Init       : 0,
+    Registered : 1,
+    Start      : 2,
+    End        : 3
+}

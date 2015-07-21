@@ -9,7 +9,7 @@ import (
 
 const (
 	CommandPacket int = iota
-	CommandStatus
+	StatusPacket
 )
 
 type Packet struct {
@@ -17,6 +17,7 @@ type Packet struct {
 	Data interface{}
 }
 
+// Implement msgpack capable decoder
 func MsgpackDecoder(msg []byte, payloadType byte, v interface{}) (err error) {
 	switch data := v.(type) {
 	case *string:
@@ -37,7 +38,7 @@ func MsgpackDecoder(msg []byte, payloadType byte, v interface{}) (err error) {
 	return websocket.ErrNotSupported
 }
 
-// Implement Msgpack Encoder
+// Implement msgpack capable encoder
 func MsgpackEncoder(v interface{}) (msg []byte, payloadType byte, err error) {
 	switch data := v.(type) {
 	case string:
@@ -45,29 +46,82 @@ func MsgpackEncoder(v interface{}) (msg []byte, payloadType byte, err error) {
 	case []byte:
 		return data, websocket.BinaryFrame, nil
 	}
+
 	msg, err = msgpack.Marshal(v)
-	return msg, websocket.BinaryFrame, err
+	if err == nil {
+		return msg, websocket.BinaryFrame, err
+	}
+
+	return msg, websocket.UnknownFrame, err
 }
 
+// Setup custom websocket codec
 var Msgpack = websocket.Codec{
 	MsgpackEncoder,
 	MsgpackDecoder,
 }
 
+var players PlayerList
+
 func WebsocketHandler(c *echo.Context) (err error) {
 	ws := c.Socket()
-	var packet []byte
+	var packet Packet
+
+	player := players.Add(ws)
+
+	// TODO: Handle user close connection
 
 	for {
 		if err = Msgpack.Receive(ws, &packet); err != nil {
 			return
 		}
 
-		fmt.Println(packet)
-
-		if err = Msgpack.Send(ws, packet); err != nil {
+		if err = ReslovePacket(packet, player); err != nil {
+			fmt.Println(err.Error())
 			return
+		}
+	}
+}
+
+func ReslovePacket(packet Packet, player *Player) (err error) {
+	switch packet.Type {
+	case CommandPacket:
+		if player.Room != nil {
+			player.Room.Broadcast(&packet)
+		}
+
+	case StatusPacket:
+		// TODO: Redesign packet format
+		data := ConvertStatus((packet.Data).(map[interface{}]interface{}))
+		err = HandlePlayerStatus(player, data)
+	}
+
+	return
+}
+
+func HandlePlayerStatus(player *Player, status Status) (err error) {
+	switch status.Name {
+	case "Register":
+		player.Team = status.Value
+		err = Msgpack.Send(player.Conn, Packet{StatusPacket, Status{"Register", 1}})
+	case "Match":
+		matchedPlayer := FindMatch(player.Team)
+		if matchedPlayer != nil {
+			room := NewRoom(player, matchedPlayer)
+			room.Broadcast(&Packet{StatusPacket, Status{"Match", 1}})
+		} else {
+			err = Msgpack.Send(player.Conn, Packet{StatusPacket, Status{"Match", 0}})
 		}
 
 	}
+	return
+}
+
+func FindMatch(team int) *Player {
+	matches := players.UnmatchPlayer(team)
+	if len(matches) > 0 {
+		return matches[0]
+	}
+
+	return nil
 }

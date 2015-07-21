@@ -19,7 +19,10 @@ Scenes.BattleField = function(game) {
     this.ScrollDirection = Input.SCROLL_DIRECTION.STOP
     this.PlayerTower = null
     this.EnemyTower = null
-    this.BG = null
+    this.BG = {
+        Slime: null,
+        Walrus: null
+    }
 }
 
 Scenes.BattleField.prototype = {
@@ -51,11 +54,17 @@ Scenes.BattleField.prototype = {
         this.Layer.SkillFx = this.add.group(this.GameScene, 'SkillFx')
 
         // Add Background
-        this.BG = this.add.image(2000, 0, 'Background', '', this.Layer.Background)
-        this.BG.anchor.x = 0.5
+        this.BG.Slime = this.add.image(-163, 0, 'Background_Slime', '', this.Layer.Background)
+        this.BG.Walrus = this.add.image(2000, 0, 'Background_Walrus', '', this.Layer.Background)
+        //this.BG.anchor.x = 0.5
         if(Game.team == Teams.Walrus) {
             // Flip background when select another team
-            this.BG.scale.x = -1
+            this.BG.Slime.anchor.x = 1
+            this.BG.Walrus.anchor.x = 1
+            this.BG.Slime.scale.x = -1
+            this.BG.Walrus.scale.x = -1
+            this.BG.Slime.x = 2000
+            this.BG.Walrus.x = -163
         }
     },
 

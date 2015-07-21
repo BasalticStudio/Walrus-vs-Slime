@@ -27,6 +27,7 @@
             }
 
             this.game = game
+            this.ready = false
 
             this.socket = new WebSocket(uri)
             this.socket.binaryType = "arraybuffer"
@@ -37,7 +38,7 @@
         }
 
         onOpen() {
-
+            this.ready = true
         }
 
         onMessage(ev) {
@@ -54,7 +55,7 @@
                     this.pushCommand(packetObject.Data)
                     break
                 case PacketTypes.Status:
-
+                    this.handleStatus(packetObject.Data)
                     break
             }
         }
@@ -71,7 +72,8 @@
             }
 
             // Should package as binary
-            this.socket.send(new Uint8Array(msgpack.pack(rawPacket)))
+            let packet = new Uint8Array(msgpack.pack(rawPacket))
+            this.socket.send(packet)
         }
 
         execCommand(name, team, params) {
@@ -97,6 +99,33 @@
 
             // Send command
             Command.Resolver.push(CommandInstance)
+        }
+
+        handleStatus(stat) {
+            // TODO: the handler can improve more
+            switch(stat.Name){
+                case "Register":
+                    if(stat.Value == 1) {
+                        Game.Status = GameStatus.Registered
+                        this.updateStatus("Match", 0)
+                    }
+                break
+                case "Match":
+                    if(stat.Value == 1) {
+                        Game.Status = GameStatus.Start
+                    }
+                break
+            }
+        }
+
+        updateStatus(name, value) {
+            this.send(
+                PacketTypes.Status,
+                {
+                    Name: name,
+                    Value: value
+                }
+            )
         }
 
         onClose() {
