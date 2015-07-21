@@ -2,6 +2,9 @@
  * Assets Compil Tasking
  */
 
+// Should included this line to let plugins work
+require('babel/register')
+
 var gulp = require('gulp')
 var sourcemaps = require('gulp-sourcemaps')
 var babel = require('gulp-babel')
@@ -18,7 +21,9 @@ function handleError(err) {
 gulp.task('js', function() {
     return gulp.src('js/**/*.js')
         .pipe(sourcemaps.init())
-        .pipe(babel())
+        .pipe(babel({
+            plugins: ['class-name']
+        }))
         .on('error', handleError)
         .pipe(order([
             'js/Core.js',
@@ -31,6 +36,7 @@ gulp.task('js', function() {
         ]))
         .pipe(concat('game.js'))
         .pipe(uglify())
+        .on('error', handleError)
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('static/js'))
 })
