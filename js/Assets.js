@@ -30,6 +30,9 @@ Assets.BattleField =  {
     'Slime_Speed': ['monsters/slime/m05.png', 200, 200, 3],
     'Slime_Super': ['monsters/slime/m06.png', 300, 300, 5],
 
+    // Scene
+    'Background': 'background.png',
+
     // UI
     'UI_Placehold': 'ui/UI_Placehold.png',
     'UI_MonsterCard': 'ui/UI_MonsterCard.png',

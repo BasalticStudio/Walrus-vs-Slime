@@ -33,5 +33,6 @@ Helper.LoadImages = function(loader, list, aspect) {
 Helper.CalcLand = function(game, object) {
     let gameHeight = game.height
     let halfHeight = object.height / 2
-    return gameHeight - Settings.UI.Height - halfHeight
+    // GameScreen - UI - Land Space = Object Base Line
+    return gameHeight - Settings.UI.Height - halfHeight - 50
 }
