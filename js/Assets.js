@@ -31,7 +31,8 @@ Assets.BattleField =  {
     'Slime_Super': ['monsters/slime/m06.png', 300, 300, 5],
 
     // Scene
-    'Background': 'background.png',
+    'Background_Slime': 'background_slime.jpg',
+    'Background_Walrus': 'background_walrus.jpg',
 
     // UI
     'UI_Placehold': 'ui/UI_Placehold.png',
