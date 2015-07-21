@@ -6,12 +6,23 @@
 
     class Command {
         constructor(game, team) {
+            if(this.constructor === Command) {
+                throw new TypeError("Cannot consturct Command instances directly")
+            }
+
             this.game = game
             this.team = team
         }
 
         execute() {
 
+        }
+
+        deserialize(data) {
+            let key = ""
+            for(key in data) {
+                this[key.toLowerCase()] = data[key]
+            }
         }
 
         getTower() {
@@ -62,8 +73,9 @@
     }
 
     window.Command = {
+        Abstract: Command,
         Resolver: new CommandResolver(),
         Spawn: SpawnCommand,
-        RankUp: RankUpCommand
+        RankUp: RankUpCommand,
     }
 }())

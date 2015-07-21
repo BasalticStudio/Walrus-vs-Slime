@@ -22,7 +22,8 @@ Objects.LevelUpUI = class LevelUpUI extends Phaser.Button {
     }
 
     onClick() {
-        Command.Resolver.push(new Command.RankUp(this.game, Game.team))
+        //Command.Resolver.push(new Command.RankUp(this.game, Game.team))
+        Game.Socket.execCommand("RankUp", Game.team)
     }
 
     onRankUp(rank) {

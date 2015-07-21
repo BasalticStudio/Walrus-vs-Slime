@@ -24,7 +24,8 @@ Objects.MonsterCardUI = class MonsterCardUI extends Phaser.Button {
     }
 
     onClick() {
-        Command.Resolver.push(new Command.Spawn(this.game, Game.team, this.monsterType))
+        //Command.Resolver.push(new Command.Spawn(this.game, Game.team, this.monsterType))
+        Game.Socket.execCommand("Spawn", Game.team, {Type: this.monsterType})
     }
 
     checkMana() {

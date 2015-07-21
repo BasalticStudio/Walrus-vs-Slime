@@ -22,7 +22,7 @@ gulp.task('js', function() {
     return gulp.src('js/**/*.js')
         .pipe(sourcemaps.init())
         .pipe(babel({
-            plugins: ['class-name']
+            plugins: ['babel-plugin-class-name']
         }))
         .on('error', handleError)
         .pipe(order([
