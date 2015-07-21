@@ -1,0 +1,38 @@
+{
+	"ImportPath": "github.com/BasalticStudio/Walrus-vs-Slime",
+	"GoVersion": "go1.4",
+	"Deps": [
+		{
+			"ImportPath": "github.com/bradfitz/http2",
+			"Rev": "f8202bc903bda493ebba4aa54922d78430c2c42f"
+		},
+		{
+			"ImportPath": "github.com/dgrijalva/jwt-go",
+			"Comment": "v2.2.0-28-g2e53eb6",
+			"Rev": "2e53eb673c4450614e3bca6f345197f9527dce71"
+		},
+		{
+			"ImportPath": "github.com/labstack/echo",
+			"Comment": "v1.0.0-7-g011ea19",
+			"Rev": "011ea1958f13e3e5f3a274ba4471113bf881c0e7"
+		},
+		{
+			"ImportPath": "github.com/labstack/gommon/color",
+			"Comment": "v0.0.3-5-g3dc2d67",
+			"Rev": "3dc2d67251832fa0da35728aada6a9c377cb2442"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Rev": "40e4aedc8fabf8c23e040057540867186712faa5"
+		},
+		{
+			"ImportPath": "golang.org/x/net/websocket",
+			"Rev": "669b27b881d6d006def7db14d534acdc5aba342b"
+		},
+		{
+			"ImportPath": "gopkg.in/vmihailenco/msgpack.v2",
+			"Comment": "v2.3",
+			"Rev": "9dbd4ac30c0b67927f0fb5557fb8341047bd35f7"
+		}
+	]
+}

@@ -31,12 +31,14 @@ Scenes.MainMenu.prototype = {
     },
 
     update: function() {
-
+        if(Game.Socket && Game.Socket.ready) {
+            Game.Socket.updateStatus("Register", Game.team)
+            this.state.start('Loading', true, false, 'BattleField', Assets.BattleField)
+        }
     },
 
     startGame: function() {
         // Connection to game server
         Game.Socket = new Socket("", this.game)
-        this.state.start('Loading', true, false, 'BattleField', Assets.BattleField)
     }
 }

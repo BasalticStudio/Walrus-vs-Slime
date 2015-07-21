@@ -13,6 +13,7 @@ Assets.MainMenu = {
 Assets.BattleField =  {
     // Objects
     'dev_Tower': 'towers/dev_Tower01.png',
+    'Walrus_Tower': ['towers/Walrus_tower.png', 300, 300, 3],
 
     // Walrus
     'Walrus_Normal': ['monsters/walrus/m01.png', 200, 200, 4],
@@ -31,12 +32,17 @@ Assets.BattleField =  {
     'Slime_Super': ['monsters/slime/m06.png', 300, 300, 5],
 
     // Scene
-    'Background': 'background.png',
+    'Background_Slime': 'background_slime.jpg',
+    'Background_Walrus': 'background_walrus.jpg',
 
     // UI
     'UI_Placehold': 'ui/UI_Placehold.png',
-    'UI_MonsterCard': 'ui/UI_MonsterCard.png',
-    'UI_MonsterCardSuper': 'ui/UI_MonsterCardSuper.png',
+    'btn_Normal': 'ui/btn_Soldier.png',
+    'btn_Attack': 'ui/btn_Grenade.png',
+    'btn_Defense': 'ui/btn_Defence.png',
+    'btn_Speed': 'ui/btn_Speed.png',
+    'btn_Ranger': 'ui/btn_Gunner.png',
+    'btn_Super': 'ui/btn_Elite.png',
 
     // Button
     'btn_LevelUP': 'ui/btn_LevelUP.png'

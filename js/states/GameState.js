@@ -5,11 +5,12 @@
 (function() {
     class GameState {
         constructor() {
-            this.team = Teams.Walrus
+            this.team = -1
             this.loser = -1
             this.PlayerTower = null
             this.EnemyTower = null
             this.Socket = null
+            this.Status = GameStatus.Init
         }
 
         setTeam(team) {

@@ -24,6 +24,10 @@ Scenes.Loading.prototype = {
     },
 
     update: function() {
+        if(Game.Status != GameStatus.Start) {
+            return // Game is not ready!
+        }
+
         if(this.load.hasLoaded) {
             this.state.start(this.targetState)
         }
