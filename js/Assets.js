@@ -13,6 +13,7 @@ Assets.MainMenu = {
 Assets.BattleField =  {
     // Objects
     'dev_Tower': 'towers/dev_Tower01.png',
+    'Walrus_Tower': ['towers/Walrus_tower.png', 300, 300, 3],
 
     // Walrus
     'Walrus_Normal': ['monsters/walrus/m01.png', 200, 200, 4],

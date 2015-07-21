@@ -31,6 +31,7 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         this.onRankChanged = new Phaser.Signal()
 
         this.initCollision()
+        this.initAnimation()
     }
 
     initCollision() {
@@ -51,6 +52,12 @@ Objects.Tower = class Tower extends Phaser.Sprite {
                 this.body.collides(state.CollisionGroup.Walrus)
                 break
         }
+    }
+
+    initAnimation() {
+        this.animations.add('Rank1', [0])
+        this.animations.add('Rank2', [1])
+        this.animations.add('Rank3', [2])
     }
 
     get Mana() {
@@ -106,6 +113,21 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         this._maxMana = newStatus.Mana
         this._manaRecover = newStatus.ManaRecover
         this._rank = rank
+
+        switch(this._rank) {
+            case 1:
+            case 2:
+                this.animations.play('Rank1')
+                break
+            case 3:
+            case 4:
+                this.animations.play('Rank2')
+                break
+            case 5:
+            case 6:
+                this.animations.play('Rank3')
+                break
+        }
 
         this.onRankChanged.dispatch(rank)
     }

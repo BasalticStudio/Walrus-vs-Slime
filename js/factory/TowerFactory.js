@@ -26,7 +26,7 @@ Factory.Tower = class TowerFactory {
         let view = ''
         switch(team) {
             case Teams.Walrus:
-                view = 'dev_Tower'
+                view = 'Walrus_Tower'
                 break
             case Teams.Slime:
                 view = 'dev_Tower'
