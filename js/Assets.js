@@ -35,8 +35,12 @@ Assets.BattleField =  {
 
     // UI
     'UI_Placehold': 'ui/UI_Placehold.png',
-    'UI_MonsterCard': 'ui/UI_MonsterCard.png',
-    'UI_MonsterCardSuper': 'ui/UI_MonsterCardSuper.png',
+    'btn_Normal': 'ui/btn_Soldier.png',
+    'btn_Attack': 'ui/btn_Grenade.png',
+    'btn_Defense': 'ui/btn_Defence.png',
+    'btn_Speed': 'ui/btn_Speed.png',
+    'btn_Ranger': 'ui/btn_Gunner.png',
+    'btn_Super': 'ui/btn_Elite.png',
 
     // Button
     'btn_LevelUP': 'ui/btn_LevelUP.png'
