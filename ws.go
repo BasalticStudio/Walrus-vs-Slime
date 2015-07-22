@@ -73,7 +73,6 @@ func WebsocketHandler(c *echo.Context) (err error) {
 	defer func() {
 		// On player disconnection
 		players.Remove(player)
-		fmt.Println(len(players))
 	}()
 
 	for {
