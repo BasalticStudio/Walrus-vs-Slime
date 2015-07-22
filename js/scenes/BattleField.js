@@ -13,6 +13,7 @@ Scenes.BattleField = function(game) {
     }
     this.UI = null
     this.CollisionGroup = {
+        Dead: null,
         Walrus: null,
         Slime: null
     }
@@ -27,6 +28,7 @@ Scenes.BattleField = function(game) {
 
 Scenes.BattleField.prototype = {
     init: function() {
+        this.world.setBounds(0, 0, 4000, 568)
         this.initLayers()
         this.initPhysics()
         this.initGame()
@@ -34,7 +36,6 @@ Scenes.BattleField.prototype = {
     },
 
     create: function() {
-        this.world.setBounds(0, 0, 4000, 768)
         this.Layer.Objects.add(this.PlayerTower)
         this.Layer.Objects.add(this.EnemyTower)
     },
@@ -74,11 +75,13 @@ Scenes.BattleField.prototype = {
 
         this.CollisionGroup.Slime = this.game.physics.p2.createCollisionGroup()
         this.CollisionGroup.Walrus = this.game.physics.p2.createCollisionGroup()
+        this.CollisionGroup.Dead = this.game.physics.p2.createCollisionGroup()
     },
 
     initGame: function() {
         this.PlayerTower = Game.PlayerTower = Factory.Tower.generatePlayer(this.game)
         this.EnemyTower = Game.EnemyTower = Factory.Tower.generateEnemy(this.game)
+        this.EnemyTower.scale.x = -1
     },
 
     initUI: function() {
