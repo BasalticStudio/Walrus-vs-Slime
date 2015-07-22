@@ -22,24 +22,24 @@ TowerData = {
         Health      : 2500,
         Mana        : 1000,
         ManaRecover : 20,
-        Cost        : 550
+        Cost        : 500
     },
     4: {
         Health      : 4000,
         Mana        : 1500,
         ManaRecover : 25,
-        Cost        : 850
+        Cost        : 700
     },
     5: {
         Health      : 6000,
         Mana        : 2000,
         ManaRecover : 30,
-        Cost        : 1400
+        Cost        : 1000
     },
     6: {
         Health      : 9000,
         Mana        : 3000,
         ManaRecover : 40,
-        Cost        : 1900
+        Cost        : 1500
     }
 }
