@@ -47,5 +47,9 @@ Assets.BattleField =  {
 
     // Button
     'btn_LevelUP_Walrus' : ['ui/btn_LevelUP_Walrus.png', 160, 160, 2],
-    'btn_LevelUP_Slime'  : ['ui/btn_LevelUP.png', 160, 160, 2]
+    'btn_LevelUP_Slime'  : ['ui/btn_LevelUP.png', 160, 160, 2],
+
+    // Result
+    'UI_Win'             : 'ui/ui_win.png',
+    'UI_Lose'            : 'ui/ui_lose.png'
 }

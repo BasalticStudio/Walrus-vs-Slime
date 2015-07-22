@@ -4,12 +4,16 @@
 
 Scenes.Result = {
     create: function() {
-        let message = "You win!"
+        let key = "UI_"
         if(Game.team == Game.loser) {
-            message = "You lose!"
+            key += 'Lose'
+        } else {
+            key += 'Win'
         }
 
-        this.add.text(470, 384, message, {font: "normal 24px 'Open Sans'", fill: 'white'})
+        let message = this.add.image(this.game.width / 2, this.game.height / 2, key)
+        message.anchor.x = 0.5
+        message.anchor.y = 0.5
 
         if(Game.Socket) { // Clear socket
             if(!Game.Socket.closed) {
