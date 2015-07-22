@@ -70,6 +70,11 @@ func WebsocketHandler(c *echo.Context) (err error) {
 	player := players.Add(ws)
 
 	// TODO: Handle user close connection
+	defer func() {
+		// On player disconnection
+		players.Remove(player)
+		fmt.Println(len(players))
+	}()
 
 	for {
 		if err = Msgpack.Receive(ws, &packet); err != nil {

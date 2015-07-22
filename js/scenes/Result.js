@@ -10,6 +10,15 @@ Scenes.Result = {
         }
 
         this.add.text(470, 384, message, {font: "normal 24px 'Open Sans'", fill: 'white'})
+
+        if(Game.Socket) { // Clear socket
+            if(!Game.Socket.closed) {
+                // Close websocket
+                Game.Socket.close()
+            }
+            // Clear websocket
+            Game.Socket = null
+        }
     }
 }
 

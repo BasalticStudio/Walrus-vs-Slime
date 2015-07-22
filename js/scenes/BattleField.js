@@ -41,6 +41,12 @@ Scenes.BattleField.prototype = {
     },
 
     update: function() {
+
+        if(Game.Status == GameStatus.End) { // If player eixt, then end
+            Game.loser = Game.team == Teams.Walrus ? Teams.Slime : Teams.Walrus
+            this.state.start('Result')
+        }
+
         this.handleScrolling()
         Command.Resolver.resolve()
     },
