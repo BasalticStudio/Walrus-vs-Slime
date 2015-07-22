@@ -29,7 +29,7 @@ Factory.Tower = class TowerFactory {
                 view = 'Walrus_Tower'
                 break
             case Teams.Slime:
-                view = 'dev_Tower'
+                view = 'Slime_Tower'
                 break
         }
 
