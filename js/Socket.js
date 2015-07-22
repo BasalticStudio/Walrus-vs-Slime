@@ -37,6 +37,14 @@
             this.socket.onclose = () => { this.onClose() }
         }
 
+        get closed() {
+            this.socket.readyState == WebSocket.CLOSED
+        }
+
+        close() {
+            this.socket.close()
+        }
+
         onOpen() {
             this.ready = true
         }
@@ -114,6 +122,9 @@
                     if(stat.Value == 1) {
                         Game.Status = GameStatus.Start
                     }
+                break
+                case "Exit":
+                    Game.Status = GameStatus.End
                 break
             }
         }

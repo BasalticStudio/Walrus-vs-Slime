@@ -48,6 +48,10 @@
                 case Events.BeginContact:
                     object.setState(States.MonsterAttack)
                     break
+                case Events.Dead:
+                    object.setState(States.MonsterDead)
+                    object.animations.play('Dead')
+                    break
             }
         }
 
@@ -62,6 +66,10 @@
                 case Events.EndContact:
                     object.setState(States.MonsterMove)
                     object.animations.play('Walk')
+                    break
+                case Events.Dead:
+                    object.setState(States.MonsterDead)
+                    object.animations.play('Dead')
                     break
             }
         }

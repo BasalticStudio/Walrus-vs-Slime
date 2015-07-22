@@ -36,7 +36,8 @@ Assets.BattleField =  {
     'Background_Walrus' : 'background_walrus.jpg',
 
     // UI
-    'UI_Placehold'      : 'ui/UI_Placehold.png',
+    'UI_Placeholder'    : 'ui/UI_Placehold.png',
+    'UI_Frame'          : 'ui/UI_Frame.png',
     'btn_Normal'        : 'ui/btn_Soldier.png',
     'btn_Attack'        : 'ui/btn_Grenade.png',
     'btn_Defense'       : 'ui/btn_Defence.png',
@@ -45,5 +46,5 @@ Assets.BattleField =  {
     'btn_Super'         : 'ui/btn_Elite.png',
 
     // Button
-    'btn_LevelUP'       : 'ui/btn_LevelUP.png'
+    'btn_LevelUP'       : ['ui/btn_LevelUP.png', 160, 160, 2]
 }

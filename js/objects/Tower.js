@@ -81,7 +81,16 @@ Objects.Tower = class Tower extends Phaser.Sprite {
         let MonsterClass = Factory.Monster.getMonsterClass(type)
         if(this._mana >= MonsterClass.Cost) {
             this._mana -= MonsterClass.Cost
-            this.parent.add(Factory.Monster.create(MonsterClass, this.game, this.x, this.team))
+            let monster = Factory.Monster.create(MonsterClass, this.game, this.x, this.team)
+            let anchorY = 50
+            if(monster.height > 200) {
+                 anchorY = 0
+            }
+            let constraint = this.game.physics.p2.createPrismaticConstraint(this, monster, true, [0,anchorY], [0,0], [4500,0])
+            constraint.lowerLimitEnabled = constraint.upperLimitEnabled = true
+            constraint.upperLimit = 1;
+            constraint.lowerLimit = -1;
+            this.parent.add(monster)
         }
     }
 

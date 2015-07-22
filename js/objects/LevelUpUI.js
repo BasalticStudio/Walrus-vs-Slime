@@ -16,8 +16,10 @@ Objects.LevelUpUI = class LevelUpUI extends Phaser.Button {
     update() {
         if(Game.PlayerTower.Mana >= this.cost && this.rank != 6) {
             this.alpha = 1
+            this.frame = 0
         } else {
-            this.alpha = 0.5
+            this.alpha = 0.85
+            this.frame = 1
         }
     }
 

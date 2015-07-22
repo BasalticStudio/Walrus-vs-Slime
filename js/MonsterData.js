@@ -31,7 +31,7 @@ MonsterData[Teams.Walrus][MonsterType.HighAttack] = {
 
 MonsterData[Teams.Walrus][MonsterType.HighSpeed] = {
     Health         : 250,
-    Attack         : 50,
+    Attack         : 10,
     AttackSpeed    : 1,
     Speed          : 600,
     MinDamageRatio : 0.8,
@@ -85,7 +85,7 @@ MonsterData[Teams.Slime][MonsterType.HighAttack] = {
 
 MonsterData[Teams.Slime][MonsterType.HighSpeed] = {
     Health         : 250,
-    Attack         : 50,
+    Attack         : 10,
     AttackSpeed    : 1,
     Speed          : 600,
     MinDamageRatio : 0.8,

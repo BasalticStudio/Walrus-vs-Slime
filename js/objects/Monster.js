@@ -22,6 +22,7 @@
 
             // Enable Physics
             game.physics.enable(this, Phaser.Physics.P2JS, Debug)
+            this.body.collideWorldBonuds = true
 
             // Setup Team
             this.team = team
@@ -40,6 +41,8 @@
             this._maxDamageRatio = 1.2
             this._attackSpeed = 0.25
             this._cost = 100
+            this._dead = false
+            this._deadCollision = null
 
             this._coolDown = false
 
@@ -72,20 +75,26 @@
                     break
             }
 
+            this._deadCollision = state.CollisionGroup.Dead
+
             this.body.onBeginContact.add(this.onBeginContact, this)
             this.body.onEndContact.add(this.onEndContact, this)
+            this.body.mass = 10000
         }
 
         setupAnimation(key) {
             let AnimationConfig = Animation[key]
             this.animations.add('Walk', AnimationConfig.Walk, 4, true)
             this.animations.add('Attack', AnimationConfig.Attack, 4)
-            this.animations.add('Dead', AnimationConfig.Attack, 4)
+            this.animations.add('Dead', AnimationConfig.Dead, 4)
         }
 
         update() {
             this.body.setZeroVelocity() // Force stop physics simulate
             this.body.setZeroRotation()
+            this.body.setZeroDamping()
+            this.body.setZeroForce()
+
             this.state.update(this)
         }
 
@@ -106,6 +115,7 @@
         }
 
         move() {
+            if(this._dead) { return }
             // Player team is "Move Right"
             if(this.team == Game.team) {
                 this.body.moveRight(this._speed)
@@ -148,9 +158,14 @@
             // Be damagerd
             this._health -= damage
 
-            if(this._health <= 0) {
-                // Dead
-                this.destroy()
+            if(this._health <= 0 && !this._dead) {
+                this._dead = true
+                this.body.clearCollision()
+                this.state.handleEvent(this, States.Monster.Events.Dead)
+                // Fade out
+                this.game.add.tween(this).to( {alpha: 0}, 0.5, Phaser.Easing.Cubic.Out).start()
+                // Remove objects
+                this.game.time.events.add(Phaser.Timer.SECOND * 0.5, () => { this.destroy() })
             }
         }
 

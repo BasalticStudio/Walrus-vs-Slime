@@ -66,3 +66,12 @@ func (pl *PlayerList) Add(conn *websocket.Conn) *Player {
 	*pl = append(*pl, &player)
 	return &player
 }
+
+func (pl *PlayerList) Remove(player *Player) {
+	for k, v := range *pl {
+		if player == v {
+			player.Room.Broadcast(&Packet{StatusPacket, &Status{"Exit", 1}})
+			*pl = append((*pl)[:k], (*pl)[k+1:]...)
+		}
+	}
+}
