@@ -14,7 +14,8 @@ Objects.GameUI = class GameUI extends Phaser.Group {
     }
 
     initMonsterCard() {
-        this.game.add.image(0, 568, 'UI_Placehold', '', this)
+        this.game.add.image(0, 568, 'UI_Placeholder', '', this)
+        this.game.add.image(720, 568, 'UI_Frame', '', this)
 
         this.add(new Objects.MonsterCardUI(this.game, 0, 568, 'btn_Normal', MonsterType.Normal))
         this.add(new Objects.MonsterCardUI(this.game, 120, 568, 'btn_Attack', MonsterType.HighAttack))
@@ -23,7 +24,7 @@ Objects.GameUI = class GameUI extends Phaser.Group {
         this.add(new Objects.MonsterCardUI(this.game, 480, 568, 'btn_Ranger', MonsterType.Ranger))
         this.add(new Objects.MonsterCardUI(this.game, 600, 568, 'btn_Super', MonsterType.Super))
 
-        this.add(new Objects.LevelUpUI(this.game, 840, 586))
+        this.add(new Objects.LevelUpUI(this.game, 792, 586))
     }
 
     initUI() {
