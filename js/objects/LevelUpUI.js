@@ -4,7 +4,13 @@
 
 Objects.LevelUpUI = class LevelUpUI extends Phaser.Button {
     constructor(game, x, y) {
-        super(game, x, y, 'btn_LevelUP')
+        let key = 'btn_LevelUP_'
+        if(Game.team == Teams.Walrus) {
+            key += "Walrus"
+        } else {
+            key += "Slime"
+        }
+        super(game, x, y, key)
 
         this.rank = Game.PlayerTower.Rank
         this.cost = TowerData[this.rank + 1].Cost
